@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Person {
+            constructor(name,age) {
+                this.name = name
+                this.age = age
+
+            }
+            // study方法放在类的实例对象上，供实例调用
+            // 通过Person调用study时，study中的this就是Person实例
+            study() {
+                console.log(this)
+            }
+        }
+        const p = new Person('Tom',111)
+        p.study() //通过实例对象调用study方法
+    </script>
+
+</body>
+
+</html>

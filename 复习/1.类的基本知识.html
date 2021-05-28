@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            总结：
+            1.类中的构造器不是必须写的，要对实例进行一些初始化的操作，如添加指定属性时才写。
+            2.如果A类继承了B类，且A类中写了构造器，那么A类中必须调用super
+            3.类中所定义的方法，都是定义在类的原型对象上，供实例去使用
+        */
+        class Person{
+            constructor(name,age){
+                this.name=name
+                this.age=age
+            }
+            // speak放在类的原型对象上,供实例使用
+            speak(){
+                console.log(`${this.name}年龄是${this.age}`)
+            }
+        }
+        function p() {
+            
+        }
+        var p=new Person('tome',12)
+        var p2=new Person('to2me',122)
+        p.speak()
+        p.speak.call({a:1,b:2})
+        console.log(p);
+
+        class Student extends Person{
+            constructor(name,age,grade){
+                super(name,age)
+                this.grade=grade
+            }
+            demo(){
+                console.log(`${this.name}年龄是${this.age},年级${this.grade}`)
+            }
+
+        }
+        const s1=new Student('小孩',15,'初中')
+        s1.speak()
+        s1.demo()
+        console.log(s1)
+
+        /*
+            this指向new出来的对象
+            通过student实例调用demo时,study中的this就是Student实例
+        */
+   
+    </script>
+    
+</body>
+</html>

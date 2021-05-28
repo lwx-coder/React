@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .title {
+            font-weight: bold;
+            font-size: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script type="text/javascript" src="../JS/react.development.js"></script>
+    <script type="text/javascript" src="../JS/react-dom.development.js"></script>
+    <script type="text/javascript" src="../JS/babel.min.js"></script>
+    <script type="text/babel">
+        /*
+        区分：js语句代码和表达式
+            1.表达式：一个表达式产生以=一个表达式，可以放在任何一个需要值的地方
+            例如：  1.a
+                    2.a+b
+                    3.arr.map()
+                    4.function(){}
+                    5.demo(1)
+            2.语句（代码）
+            例如：  1.if(){}
+                    2.for(){}
+                    3.switch(){}
+
+
+    */
+        const data = '前端jS框架列表'
+        const arr = ['Angular', 'React', 'Vue']
+        const obj = { name1: 'Angular', name2: 'React', name3: 'Vue' }
+        //  <p style={{fontWeight:'bold',fontSize:'25px'}}>{data}</p>
+        const VDOM = (
+            <div>
+                <p className={'title'}>{data}</p>
+                <ul>
+                   {
+                    arr.map((item,i)=>{
+                        return <li key={i}>{item}</li>
+                    })
+                   }
+                </ul>
+            </div>
+        )
+        ReactDOM.render(VDOM, document.getElementById('test'))
+    </script>
+
+</body>
+
+</html>

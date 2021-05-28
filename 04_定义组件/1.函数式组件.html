@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello-react</title>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script type="text/javascript" src="../JS/react.development.js"></script>
+    <script type="text/javascript" src="../JS/react-dom.development.js"></script>
+    <script type="text/javascript" src="../JS/babel.min.js"></script>
+    <script type="text/babel">
+    function Demo() {
+        return <h3>我是一个函数式组件</h3>
+    }
+    ReactDOM.render(<Demo/>,document.getElementById('test'))
+    /*
+      过程：
+        1.React解析组件标签，找到了demo组件
+        2.发现组件是由函数定义的，随后调用函数，将返回的虚拟DOM转为真实DOM，然后呈现在页面  
+    */
+     
+
+
+
+    </script>
+
+
+
+
+</body>
+
+</html>
