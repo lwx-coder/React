@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="test"></div>
+    <div id="test1"></div>
+    <script type="text/javascript" src="../JS/react.development.js"></script>
+    <script type="text/javascript" src="../JS/react-dom.development.js"></script>
+    <script type="text/javascript" src="../JS/babel.min.js"></script>
+    <script type="text/javascript" src="../JS/prop-types.js"></script>
+    <script type="text/babel">
+    /*
+        15.5版本后启用引入propTypes库
+    */
+        class Person extends React.Component{
+        render(){
+            const {name,age,gender}=this.props
+            return <ul>
+                    <li>{name}</li>
+                    <li>{age+1}</li>
+                    <li>{gender}</li>
+                </ul>
+        }  
+    }
+    // 对标签属性进行类型、必要性的限制
+    Person.propTypes={
+        name:PropTypes.string.isRequired,
+        gender:PropTypes.string,
+        age:PropTypes.number,
+        speak:PropTypes.func
+
+    }
+    // 指定默认标签属性值
+    Person.defaultProps={
+        gender:'未知',
+        age:18
+    }
+    const p={name:"t1om",gender:'女'}
+    // props批量传递属性
+    ReactDOM.render(<Person name="tom" age={19} gender="男" speak={speak} />,document.getElementById('test'))
+    ReactDOM.render(<Person{...p}  />,document.getElementById('test1'))
+    function speak() {
+        console.log(speak)
+    }
+    </script>
+
+</body>
+
+</html>

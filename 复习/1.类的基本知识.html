@@ -52,6 +52,19 @@
             this指向new出来的对象
             通过student实例调用demo时,study中的this就是Student实例
         */
+
+        class Car {
+            constructor(name,price){
+                this.name=name
+                this.price=price
+                // this.wheel=4
+            }
+            // 类中可以直接写赋值语句,如下代码的含义是:给Car的实例对象添加一个属性名为a，值为1
+            a=1
+            wheel=4
+        }
+        const c1=new Car('风驰',999)
+        console.log(c1)     
    
     </script>
     
