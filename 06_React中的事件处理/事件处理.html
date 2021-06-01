@@ -19,21 +19,15 @@
     <script type="text/javascript" src="../JS/react-dom.development.js"></script>
     <script type="text/javascript" src="../JS/babel.min.js"></script>
     <script type="text/babel">
-    /*
-        React.createRef调用后可以返回一个容器，该容器可以存储被ref所标识的节点
-    */
         class Demo extends React.Component {
-            constructor(props) {
-                super(props);
-                this.input1 = React.createRef();
-                this.input2 = React.createRef();
-            }
+            input1 = React.createRef();
+            input2 = React.createRef();
             render() {
                 return (
                     <div>
                         <input type="text" ref={this.input1} placeholder="点击按钮提示数据" />
                         <button onClick={this.alert}>提示左侧输入数据</button>
-                        <input onBlur={this.alert2} type="text" ref={this.input2} placeholder="失去焦点提示数据" />
+                        <input onBlur={this.alert2} type="text"  placeholder="失去焦点提示数据" />
                     </div>
 
                 )
@@ -41,8 +35,8 @@
             alert = () => {
                 alert(this.input1.current.value);
             }
-            alert2 = () => {
-                alert(this.input2.current.value)
+            alert2 = (event) => {
+                console.log(event.target.value);
             }
 
         }

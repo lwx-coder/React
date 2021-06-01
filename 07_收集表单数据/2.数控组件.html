@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            margin: 0 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script type="text/javascript" src="../JS/react.development.js"></script>
+    <script type="text/javascript" src="../JS/react-dom.development.js"></script>
+    <script type="text/javascript" src="../JS/babel.min.js"></script>
+    <script type="text/babel">
+    class Login extends React.Component{
+        state={
+            username:"",
+            password:""
+        }
+        handleSubmit=(e)=>{
+            const {username,password}=this.state
+            alert(username+'-----'+password)
+        }
+        saveuser=(e)=>{
+            this.setState({username:e.target.value})
+        }
+        savepwd=(e)=>{
+            this.setState({password:e.target.value})
+        }
+        render() {
+            return (
+                <form onSubmit={this.handleSubmit}>
+                    账号：<input type="text" name="username" onChange={this.saveuser} />
+                    密码：<input type="password" name="password"  onChange={this.savepwd}/>
+                    <button>登录</button>
+                </form>
+            )
+            
+        }
+    }
+    ReactDOM.render(<Login/>,document.getElementById('test'))
+    
+
+    </script>
+
+</body>
+
+</html>

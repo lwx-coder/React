@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            margin: 0 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script type="text/javascript" src="../JS/react.development.js"></script>
+    <script type="text/javascript" src="../JS/react-dom.development.js"></script>
+    <script type="text/javascript" src="../JS/babel.min.js"></script>
+    <script type="text/babel">
+    /*
+        高阶函数：如果一个函数符合下列规范中的任何一个，那该函数就是高阶函数
+                1.若A函数，接收的参数是一个函数，那么A函数为高阶函数
+                2.若A函数，调用的返回值依然是一个函数，那么可以称之为高阶函数
+        函数的柯里化：通过函数调用继续返回函数的方式，实现多次接收参数最后统一处理的函数编码形式
+    */
+    class Login extends React.Component{
+        state={
+            username:"",
+            password:""
+        }
+        handleSubmit=(e)=>{
+            const {username,password}=this.state
+            alert(username+'-----'+password)
+        }
+        saveForm=()=>{
+            return (e)=>{
+                this.setState({[e.target.name]:e.target.value})
+            }
+        }
+        render() {
+            return (
+                <form onSubmit={this.handleSubmit}>
+                    账号：<input type="text" name="username" onChange={this.saveForm('username')} />
+                    密码：<input type="password" name="password"  onChange={this.saveForm('password')}/>
+                    <button>登录</button>
+                </form>
+            )
+            
+        }
+    }
+    ReactDOM.render(<Login/>,document.getElementById('test'))
+    
+
+    </script>
+
+</body>
+
+</html>
