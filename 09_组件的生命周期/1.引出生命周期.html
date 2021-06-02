@@ -14,15 +14,40 @@
     <script type="text/javascript" src="../JS/react-dom.development.js"></script>
     <script type="text/javascript" src="../JS/babel.min.js"></script>
     <script type="text/babel">
-     class Life extends React.Component{
-         render(){
-             return (  <h1>111</h1>)
-           
-         }
-        
-     }
-     ReactDOM.render(<Life/>,document.getElementById('test'))
-      
+        class Life extends React.Component {
+            state = { opacity: 1 }
+            // 组件挂载完毕 只调用一次
+            componentDidMount(){
+                  let {opacity}=this.state
+                this.timer=setInterval(() => {
+                    opacity=opacity-0.1
+                    if(opacity<=0) opacity=1
+                    this.setState({opacity})
+                }, 200);
+
+            }
+            // 组件将要被卸载调用
+            componentWillUnmount(){
+                clearInterval(this.timer)
+            }
+            death=()=>{
+                // 卸载组件
+                ReactDOM.unmountComponentAtNode(document.getElementById('test'))
+              
+            }
+            render() {
+                return (
+                    <div>
+                        <h2 style={{opacity:this.state.opacity}}>React学不会怎么办</h2>
+                        <button onClick={this.death}>不活了</button>
+                    </div>
+                )
+            }
+
+
+        }
+        ReactDOM.render(<Life/>, document.getElementById('test'))
+
 
 
 
