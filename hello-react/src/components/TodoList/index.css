@@ -1,0 +1,33 @@
+input{
+    height: 28px;
+    width: 350px;
+    text-indent: 10px;
+}
+ul{
+    border:1px solid pink;
+    width: 350px;
+    margin-top: 10px;
+}
+ul,ol,li{
+    list-style: none;
+}
+li{
+    margin:5px 0
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+.todolist{
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+
+
+   
+}
+.todolist>div{
+    border: 1px solid grey;
+    padding: 20px;
+    border-radius: 5px;
+}
