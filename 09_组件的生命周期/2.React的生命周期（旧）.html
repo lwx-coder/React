@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script type="text/javascript" src="../JS/react.development.js"></script>
+    <script type="text/javascript" src="../JS/react-dom.development.js"></script>
+    <script type="text/javascript" src="../JS/babel.min.js"></script>
+    <script type="text/babel">
+        /*
+        contructor
+        componentWillMount
+        render
+        componentDidMount
+        componentWillUnmount
+    */
+  /*
+        setState() 步骤：  正常更新
+        shouldComponentUpdate  控制组件更新的阀门
+        componentWillUpdate 组件将要更新的钩子
+        render
+        componentDidUpdate 组件完毕的钩子
+
+        forceUpdate() 步骤： 强制更新
+        componentWillUpdate
+        render
+        componentDidUpdate
+*/ 
+
+
+        class Count extends React.Component {
+            constructor(props){
+                super(props)
+            }
+            state = { count: 0 }
+            render() {
+                return <div>
+                    <h2>{this.state.count}</h2>
+                    <button onClick={this.add}>add</button>
+                </div>
+            }
+            add = () => {
+                let { count } = this.state
+                this.setState({ count: count + 1 })
+            }
+
+        }
+
+        ReactDOM.render(<Count/>, document.getElementById('test'))
+
+
+
+
+    </script>
+
+
+
+
+</body>
+
+</html>

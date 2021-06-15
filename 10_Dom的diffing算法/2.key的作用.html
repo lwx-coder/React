@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script type="text/javascript" src="../JS/react.development.js"></script>
+    <script type="text/javascript" src="../JS/react-dom.development.js"></script>
+    <script type="text/javascript" src="../JS/babel.min.js"></script>
+    <script type="text/babel">
+    /*
+        经典面试题：
+        1).React/Vue中的key是什么作用？内部原理是什么
+        2).为什么遍历列表时，最好不要用index
+
+    
+    
+    */
+        class Time extends React.Component {
+            state={time:new Date()}
+            render() {
+                return (
+                    <div>
+                        <h1>Hello</h1>
+                        <input type="text" />
+                        <span>现在是：{this.state.time.toTimeString()}</span>
+                    </div>
+                )
+            }
+            componentDidMount() {
+                setInterval(()=>{
+                    const {time}=this.state
+                    this.setState({time:new Date()})
+                },1000)
+            }
+        }
+        ReactDOM.render(<Time />, document.getElementById('test'))
+
+    </script>
+
+
+
+
+</body>
+
+</html>

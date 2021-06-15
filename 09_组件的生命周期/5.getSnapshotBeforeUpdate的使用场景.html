@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        .list {
+            width: 200px;
+            height: 150px;
+            background-color: skyblue;
+            overflow: auto;
+
+        }
+
+        .list>div {
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        class Newslist extends React.Component {
+            state = { newarr: [] }
+            componentDidMount() {
+                setInterval(() => {
+                    const { newarr } = this.state
+                    let news = '新闻' + (newarr.length + 1)
+                    console.log(news)
+                    this.setState({ newarr: [news, ...newarr] })
+                }, 1000);
+            }
+            getSnapshotBeforeUpdate(prevProps, prevState) {
+                return this.list.scrollHeight
+
+            }
+            componentDidUpdate(prevProps, prevState, height) {
+                this.list.scrollTop += this.list.scrollHeight - height
+
+            }
+            render() {
+                return (
+                    <div className="list" ref={c => this.list = c}>
+                        {
+                            this.state.newarr.map((item, i) => {
+                                return <div key={i}>{item}</div>
+                            })
+                        }
+                    </div>
+                )
+
+            }
+        }
+        ReactDOM.render(<Newslist />, document.getElementById('test'))
+
+
+
+
+
+
+    </script>
+
+
+
+
+</body>
+
+</html>

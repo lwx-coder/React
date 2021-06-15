@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        /*
+                新版本较旧版本去掉了三个will钩子
+                新增了两个钩子 
+                static getDerivedStateFromProps()
+                getSnapshotBeforeUpdate()
+        
+        */
+        /*
+                1.初始化阶段：由ReactDom.render()触发--再次渲染
+                    1.constructor()
+                    2.getDerivedStateFromProps()
+                    3.render()
+                    4.componentDidMount()
+                2.更新阶段：由组件内部this.setState()或父组件重新render触发
+                    1.getDerivedStateFromProps()
+                    2.shouldComponentUpdate()
+                    3.render()
+                    4.getShapshotBeforeUpdate()
+                    5.componentDidUpdate()
+                3.卸载组件：由ReactDom.unmountComponentAtnode()触发
+                    1.componentWillUnmount
+        
+        
+        
+        */
+
+        class A extends React.Component {
+            state = { car: 'benchi' }
+            changeCar = () => {
+                const { car } = this.state
+                this.setState({ car: 'baoma' })
+
+
+            }
+
+            render() {
+                return (
+                    <div>
+                        <h2>A组件</h2>
+                        <button onClick={this.changeCar}>换车</button>
+                        <B car={this.state.car} />
+                    </div>
+                )
+            }
+        }
+        class B extends React.Component {
+            UNSAFE_componentWillReceiveProps(props) {
+                console.log('componentWillReceiveProps', props)
+
+            }
+            render() {
+                return (
+                    <div>
+                        <h2>B组件</h2>
+                        {this.props.car}
+                    </div>
+                )
+            }
+
+
+        }
+        ReactDOM.render(<A />, document.getElementById('test'))
+
+
+
+
+
+    </script>
+
+
+
+
+</body>
+
+</html>
