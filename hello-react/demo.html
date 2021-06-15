@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>jquery-ajax</title>
+</head>
+
+<body>
+    <input type="button" value="点击" id="btn">
+    <div id="showInfo"></div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script type="text/javascript">
+        $(function () {
+
+            $("#btn").click(function () {
+                $.ajax({
+                    url: "http://192.168.1.17/api/v1/authentication/auth/",//一个用来包含发送请求的URL字符串。
+                    data: { 'username': 'admin', 'password': 'admin' },
+                    dataType: "json",//放回值的类型，HTML、text、json、、、
+                    type: "post",
+                    success: function (data) {//请求成功后的回调函数
+                        // $("#showInfo").html(data)
+                        data;
+
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    },
+                });
+            });
+
+
+
+        });
+
+    </script>
+</body>
+
+</html>
