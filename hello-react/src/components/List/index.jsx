@@ -2,38 +2,23 @@ import React, { Component } from 'react'
 import './index.css'
 
 export default class index extends Component {
-    state = { num: -1 }
+    state = { mouse: false }
     render() {
+        const { mouse } = this.state
+        const { list } = this.props
         return (
-            <ul className="todo-main">
-                {
-                    this.props.list.map((item, i) => {
-                        return <li key={item.id} onMouseEnter={e => this.hover(i, e)} className={this.state.num === i ? 'active' : ''}>
-                            <input type="checkbox" name="item" onChange={e=>this.change(i)}/>
-                            <label>{item.name}</label>
-                            <button onClick={e => this.del(i, e)}>删除</button>
-                        </li>
-                    }
-                    )
-                }
-            </ul>
-
+            <li onMouseEnter={this.onmouse(true)} onMouseLeave={this.onmouse(false)} style={{ 'backgroundColor': mouse ? 'pink' : '' }}>
+                <input type="checkbox" name="item" />
+                <label>{list.name}</label>
+                <button  style={{ 'display': mouse ? 'block' : 'none' }}>删除</button>
+            </li>
         )
-    }
-    change = (i) => {
-        this.props.change(i)
-        
-    }
-    hover = (i) => {
-        const { num } = this.state
-        this.setState({ num: i })
-    }
 
-    del = (i) => {
-        this.props.delTodo(i)
-        this.setState()
-        
     }
-
+    onmouse = (flag) => {
+        return () => {
+            this.setState({ mouse: flag })
+        }
+    }
 
 }
