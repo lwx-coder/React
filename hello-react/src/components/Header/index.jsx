@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
+import propTypes from 'prop-types'
 import {nanoid} from 'nanoid'
+
 import './index.css'
 
 export default class index extends Component {
+    static propTypes={
+        addTodo:propTypes.func.isRequired
+    }
     render() {
         return (
             <div>
@@ -10,6 +15,7 @@ export default class index extends Component {
             </div>
         )
     }
+   
     onKeyDownchange = (e) => {
         if (e.keyCode == 13) {
             if(e.target.value.trim()===''){
