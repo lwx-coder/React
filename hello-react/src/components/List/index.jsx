@@ -1,42 +1,21 @@
 import React, { Component } from 'react'
-import propTypes from 'prop-types'
-
-import './index.css'
 
 export default class index extends Component {
-    static propTypes = {
-        delTodo: propTypes.func.isRequired,
-        updateTodo: propTypes.func.isRequired,
-
-    }
-    state = { mouse: false }
     render() {
-        const { mouse  } = this.state
-        const { id, name,done } = this.props
+        const { list } = this.props
         return (
-            <li onMouseEnter={this.onmouse(true)} onMouseLeave={this.onmouse(false)} style={{ 'backgroundColor': mouse ? 'pink' : '' }}>
-                <input type="checkbox" name="item" checked={done} onChange={this.updateTodo(id)} />
-                <label>{name}</label>
-                <button style={{ 'display': mouse ? 'block' : 'none' }} onClick={() => this.delTodo(id)}>删除</button>
-            </li>
+            <div className="row">
+            {
+                list.map(item => {
+                    return <div className="card" key={item.id}>
+                        <a href="https://github.com/reactjs" >
+                            <img src={item.avatar_url} style={{ width: '100px' }} alt="" />
+                        </a>
+                        <p className="card-text">{item.login}</p>
+                    </div>
+                })
+            }
+        </div>
         )
     }
-   
-    
-  
-    delTodo = (id) => {
-        this.props.delTodo(id)
-    }
-    updateTodo = (id) => {
-        return (e) => {
-            this.props.updateTodo(id, e.target.checked)
-
-        }
-    }
-    onmouse = (flag) => {
-        return () => {
-            this.setState({ mouse: flag })
-        }
-    }
-
 }

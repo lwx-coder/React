@@ -1,30 +1,33 @@
 import React, { Component } from 'react'
-import propTypes from 'prop-types'
-import {nanoid} from 'nanoid'
-
-import './index.css'
+import axios from 'axios'
 
 export default class index extends Component {
-    static propTypes={
-        addTodo:propTypes.func.isRequired
-    }
     render() {
         return (
             <div>
-                  <input className='input' type="text"  placeholder="请输入你的任务名称，按回车键确认" onKeyDown={e => this.onKeyDownchange(e)} />
+                    <section className="jumbotron">
+                    <h3 className="jumbotron-heading">Search Github Users</h3>
+                    <div>
+                        <input type="text" placeholder="enter the name you search" ref={c=>this.input=c}  />&nbsp;<button onClick={this.search}>Search</button>
+                    </div>
+                </section>
+                
             </div>
         )
     }
-   
-    onKeyDownchange = (e) => {
-        if (e.keyCode == 13) {
-            if(e.target.value.trim()===''){
-                alert('内容不能为空')
-                return
+    search = () => {
+        const {input:{value:a}}=this
+        axios.get('/api1/search/users2',{
+            params:{
+                q:a
             }
-            const input = { id: nanoid(), name: e.target.value,done:false }
-            this.props.addTodo(input) 
-            e.target.value=''
-        }
+        }).then(
+            res=>{
+                console.log(res.data.items);
+                this.props.search(res.data.items)
+            },
+            err=>{console.log(err);}
+        )
     }
+    
 }
