@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import PubSub from 'pubsub-js'
 
 export default class index extends Component {
     render() {
@@ -18,17 +17,18 @@ export default class index extends Component {
     }
     search = () => {
         const {input:{value:a}}=this
-        PubSub.publish('MY TOPIC',{isFirst:false,isLoading:true});
+        // const {isFirst,isLoading,err} = this.props
+        this.props.updateApp({isFirst:false,isLoading:true})
         axios.get('/api1/search/users',{
             params:{
                 q:a
             }
         }).then(
             res=>{
-                PubSub.publish('MY TOPIC',{isLoading:false,list:res.data.items});
+                this.props.updateApp({isLoading:false,list:res.data.items})
             },
             err=>{
-                PubSub.publish('MY TOPIC',{isLoading:false,err:err.message});
+                this.props.updateApp({isLoading:false,err:err.message})
             }
         )
     }
