@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Route, Switch,Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Detail from './components/Detail'
 import Home from './components/Home'
+import Test from './components/Test'
 import MyNavLink from './components/MyNavLink'
 
 export default class App extends Component {
@@ -24,10 +25,9 @@ export default class App extends Component {
                         <div className="panel">
                             <div className="panel-body">
                                 <Switch>
-                                    <Route exact path="/detail" component={Detail} />
+                                    <Route path="/detail" component={Detail} />
                                     <Route path="/home" component={Home} />
-                                    <Redirect to="/detail"/>
-                                    {/* <Route path="/home" component={Test} /> */}
+                                    <Route path="/home" component={Test} />
 
                                 </Switch>
 

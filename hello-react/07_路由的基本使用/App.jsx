@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { Route, Switch,Redirect } from 'react-router-dom';
-import Detail from './components/Detail'
-import Home from './components/Home'
-import MyNavLink from './components/MyNavLink'
+import { Link,Route } from 'react-router-dom';
+import Detail from './components/Detail' 
+import Home from './components/Home' 
 
 export default class App extends Component {
     render() {
@@ -16,21 +15,15 @@ export default class App extends Component {
                 <div className="row">
                     <div className="col-xs-2 col-xs-offset-2">
                         <div className="list-group">
-                            <MyNavLink to='/home' >home</MyNavLink>
-                            <MyNavLink to='/detail' >detail</MyNavLink>
+                            <Link className="list-group-item" to="/detail">Detail</Link>
+                            <Link className="list-group-item " to="/home">Home</Link>
                         </div>
                     </div>
                     <div className="col-xs-6">
                         <div className="panel">
                             <div className="panel-body">
-                                <Switch>
-                                    <Route exact path="/detail" component={Detail} />
-                                    <Route path="/home" component={Home} />
-                                    <Redirect to="/detail"/>
-                                    {/* <Route path="/home" component={Test} /> */}
-
-                                </Switch>
-
+                                <Route path="/detail" component={Detail} />
+                                <Route path="/home" component={Home} />
                             </div>
                         </div>
                     </div>
