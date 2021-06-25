@@ -5,7 +5,6 @@ export default class Detail extends Component {
         return (
             <div>
               <h1>Detail内容</h1>
-               
             </div>
         )
     }

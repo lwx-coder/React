@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import Router from './router/router';
-
-import './App.css'
+import { Route, Switch,Redirect } from 'react-router-dom';
+import Home from './pages/Home'
+import Detail from './pages/Detail'
+import MyNavLink from './components/MyNavLink'
 export default class App extends Component {
     render() {
         return (
@@ -14,14 +15,18 @@ export default class App extends Component {
                 <div className="row">
                     <div className="col-xs-2 col-xs-offset-2">
                         <div className="list-group">
-                            <span   className="list-group-item">Detail</span>
-                            <span   className="list-group-item active">Home</span>
+                            <MyNavLink to="/detail">detail</MyNavLink>
+                            <MyNavLink to="/home">home</MyNavLink>
                         </div>
                     </div>
                     <div className="col-xs-6">
                         <div className="panel">
                             <div className="panel-body">
-                                <Router />
+                                <Switch>
+                                    <Route  path="/home" component={Home} />
+                                    <Route  path="/detail" component={Detail} />
+                                    <Redirect to="/detail" />
+                                </Switch>
                             </div>
                         </div>
                     </div>
