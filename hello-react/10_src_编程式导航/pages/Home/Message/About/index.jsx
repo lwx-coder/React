@@ -13,15 +13,14 @@ export default class About extends Component {
         // const { match: { params: { id, title } } } = this.props
         // const { search } = this.props.location
         // const {id,title}=qs.parse(search.slice(1))
-        const {id,title}=this.props.location.state
-        console.log(this.props.location.state);
+        const { id, title } = this.props.location.state
+        console.log(this.props);
+        const content = this.state.content.find(item => Number(item.id) === Number(id)).content||[]
         return (
             <div>
                 <p> ID:{id}</p>
                 <p> TITLE:{title}</p>
-                <p>CONTENT:{
-                    this.state.content.find(item => item.id === id).content
-                }</p>
+                <p>CONTENT:{content||{}}</p>
             </div>
         )
     }

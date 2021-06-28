@@ -1,58 +1,91 @@
 import React, { Component } from 'react'
-import { Route, Switch,Redirect } from 'react-router-dom';
-<<<<<<< HEAD
-import Home from './pages/Home'
-import Detail from './pages/Detail'
-import MyNavLink from './components/MyNavLink'
-=======
-import Detail from './components/Detail'
-import Home from './components/Home'
-import MyNavLink from './components/MyNavLink'
+import { Button, Rate, Table, Tag, Space } from 'antd';
+import {LoadingOutlined} from '@ant-design/icons'
 
->>>>>>> f829cc62e69fb838c6e5e1cda3e4aa991e36db91
 export default class App extends Component {
     render() {
+        const columns = [
+            {
+                title: 'Name',
+                dataIndex: 'name',
+                key: 'name',
+                render: text =><a>{text}</a>,
+            },
+            {
+                title: 'Age',
+                dataIndex: 'age',
+                key: 'age',
+            },
+            {
+                title: 'Address',
+                dataIndex: 'address',
+                key: 'address',
+            },
+            {
+                title: 'Tags',
+                key: 'tags',
+                dataIndex: 'tags',
+                render: tags => (
+                    <>
+                        {tags.map(tag => {
+                            let color = tag.length > 5 ? 'geekblue' : 'green';
+                            if (tag === 'loser') {
+                                color = 'volcano';
+                            }
+                            return (
+                                <Tag color={color} key={tag}>
+                                    {tag.toUpperCase()}
+                                </Tag>
+                            );
+                        })}
+                    </>
+                ),
+            },
+            {
+                title: 'Action',
+                key: 'action',
+                render: (text, record) => (
+                    <Space size="middle">
+                        <a>Invite {record.name}</a>
+                        <a>Delete</a>
+                    </Space>
+                ),
+            },
+        ]
+        const data = [
+            {
+                key: '1',
+                name: 'John Brown',
+                age: 32,
+                address: 'New York No. 1 Lake Park',
+                tags: ['nice', 'developer'],
+            },
+            {
+                key: '2',
+                name: 'Jim Green',
+                age: 42,
+                address: 'London No. 1 Lake Park',
+                tags: ['loser'],
+            },
+            {
+                key: '3',
+                name: 'Joe Black',
+                age: 32,
+                address: 'Sidney No. 1 Lake Park',
+                tags: ['cool', 'teacher'],
+            },
+        ];
         return (
-            <div >
-                <div className="row">
-                    <div className="col-xs-offset-2 col-xs-8">
-                        <div className="page-header"><h2>React Router Demo</h2></div>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-xs-2 col-xs-offset-2">
-                        <div className="list-group">
-<<<<<<< HEAD
-                            <MyNavLink to="/detail">detail</MyNavLink>
-                            <MyNavLink to="/home">home</MyNavLink>
-=======
-                            <MyNavLink to='/home' >home</MyNavLink>
-                            <MyNavLink to='/detail' >detail</MyNavLink>
->>>>>>> f829cc62e69fb838c6e5e1cda3e4aa991e36db91
-                        </div>
-                    </div>
-                    <div className="col-xs-6">
-                        <div className="panel">
-                            <div className="panel-body">
-                                <Switch>
-<<<<<<< HEAD
-                                    <Route  path="/home" component={Home} />
-                                    <Route  path="/detail" component={Detail} />
-                                    <Redirect to="/detail" />
-                                </Switch>
-=======
-                                    <Route exact path="/detail" component={Detail} />
-                                    <Route path="/home" component={Home} />
-                                    <Redirect to="/detail"/>
-                                    {/* <Route path="/home" component={Test} /> */}
-
-                                </Switch>
-
->>>>>>> f829cc62e69fb838c6e5e1cda3e4aa991e36db91
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div>
+                <Button type="primary">Primary Button</Button>
+                <Button>Default Button</Button>
+                <Button type="dashed">Dashed Button</Button>
+                <br />
+                <Button type="text">Text Button</Button>
+                <Button type="link">Link Button</Button>
+                <Rate allowHalf defaultValue={2.5} />
+                <Table columns={columns} dataSource={data} bordered style={{'width':'80%'}} />
+                <LoadingOutlined />
             </div>
         )
     }
